@@ -50,7 +50,7 @@ while count < 10:
                 print("Hashing ...")
                 passSaltHash = passwd + passSalt
                 passSaltHash = hashlib.md5(passSaltHash.encode()).hexdigest()
-                print("Hash retrieved: " + passSaltHash)
+                print("Hash value: " + passSaltHash)
 
                 #Compare against shadow.txt records
                 with open(shadow) as s:
@@ -62,13 +62,14 @@ while count < 10:
                             #Assign clearance
                             clear=line.split(":")[2].strip()
                             break
-
-                    if found == False:
-                        print("Username not found in shadow.txt")
                 break
-            
-        print("Incorrect username and password.")
-        count += 1
+
+        if not found:
+            print("Incorrect username or password.")
+            count += 1
+
+        else:
+            break
         
 
 if count >= 10:

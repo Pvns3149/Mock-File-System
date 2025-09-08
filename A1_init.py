@@ -48,7 +48,6 @@ with open (salt) as f:
                         
                         #Generate hash and add to shadow.txt (MD5)
                         passSaltHash=passwd + passSalt
-                        print(passSaltHash)
                         passSaltHash = hashlib.md5(passSaltHash.encode()).hexdigest()
                         with open(shadow, "a") as s:
                             s.write(uname + ":" + passSaltHash + ":" + clear + "\n")
